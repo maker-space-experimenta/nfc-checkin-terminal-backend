@@ -6,10 +6,6 @@ const app            = express();
 
 let users = [];
 
-MongoClient.connect('mongodb://localhost:27017/blog', function(err, db) {
-    // ...
-});
-
 function sendingGuid(guid) {
     let mac = guid.toLowerCase().substring(0, 17);
     console.log('sending ' + mac);
@@ -58,8 +54,6 @@ app.get('/scan/:guid', (req, res) => {
 
 
 setInterval(() => {
-    
-
     console.log("sending guids to presence", users);
 
     users.forEach(guid => {

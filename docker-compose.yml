@@ -16,10 +16,3 @@ services:
     networks:
      - traefik_net
      - backend
-
-  mongo_db:
-    image: mongo:latest
-    labels:
-      - "traefik.enable=false"
-    networks: 
-      - backend
