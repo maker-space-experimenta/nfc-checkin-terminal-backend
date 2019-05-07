@@ -2,8 +2,8 @@ version: "3"
 
 networks:
   backend:
-  traefik_net:
-    external: true
+#  traefik_net:
+#    external: true
 
 services:
   node_server:
@@ -14,5 +14,5 @@ services:
      - "traefik.docker.network=traefik_net"
      - "traefik.port=8000"
     networks:
-     - traefik_net
+ #    - traefik_net
      - backend

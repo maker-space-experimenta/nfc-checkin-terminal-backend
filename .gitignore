@@ -1,2 +1,8 @@
 
 node_modules/
+src/config.ts
+_dist/
+
+\.vscode/
+
+package-lock\.json

@@ -3,8 +3,9 @@ FROM node:latest
 WORKDIR /usr/src/app
 
 COPY package.json ./
-RUN npm install
-COPY . .
+COPY ./_dist .
 
-EXPOSE 8000
-CMD [ "node", "src/main.js" ]
+RUN npm install
+
+EXPOSE 8080
+CMD [ "node", "main.js" ]

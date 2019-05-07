@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine-ts --config=jasmine.json",
+    "testWithCoverage": "nyc -r lcov -e .ts -x \"*.test.ts\" jasmine-ts --config=jasmine.json && nyc report",
+    "watchTest": "nodemon --exec 'npm run test'",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +15,16 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "moment": "^2.24.0",
     "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.3.12",
+    "jasmine": "^3.4.0",
+    "jasmine-ts": "^0.3.0",
+    "nodemon": "^1.19.0",
+    "nyc": "^14.1.0",
+    "ts-node": "^8.1.0",
+    "typescript": "^3.4.5"
   }
 }
