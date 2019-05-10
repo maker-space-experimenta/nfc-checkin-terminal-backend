@@ -30,7 +30,7 @@ export default class Server {
 
             let users = UserRepository.getInstance().GetActive();
             CfhnJob.run(users);
-        }, 5 * 1000);
+        }, Config.PresenceIntervall);
     }
 }
 

@@ -20,16 +20,19 @@ export default class ScanController {
     public ScanEndpoint (req, res) {
         let uuid = req.params.guid.toUpperCase();
         let user = UserRepository.getInstance().Get(uuid);
+        let result = "removed";
 
         if (!user) {
             console.debug('user added - uuid ' + uuid);
             user = new UserModel(uuid);
             UserRepository.getInstance().Add(user);
+
+            result = "added";
         }
 
-        user.scans.push(new ScanModel( new Date() ));
+        user.AddScan();
 
-        res.send({ result: "removed" });
+        res.send({ result: result });
     }
 
     public Register () :express.Router {
