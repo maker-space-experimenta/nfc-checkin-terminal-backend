@@ -11,12 +11,12 @@ export class CfhnJob {
         console.log(JSON.stringify(users));
 
         users.forEach(user => {
-            this.sendingGuid(user);
+            this.sendingUid(user);
         });
     }
     
-    private static sendingGuid (user: UserModel) {
-        let mac = user.uuid.toLowerCase().substring(0, 17);
+    private static sendingUid (user: UserModel) {
+        let mac = user.uid.toLowerCase().substring(0, 17);
         
         console.log('sending ' + mac);
 

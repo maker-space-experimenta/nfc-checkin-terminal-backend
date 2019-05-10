@@ -1,22 +1,27 @@
 
-import * as moment from 'moment';
 import ScanModel from './scan.model';
 
 export default class UserModel {
 
-    constructor (uuid: string) {
-        this.uuid = uuid;
+    constructor (uid: string) {
+        this.uid = uid;
     }
 
-    public uuid: String;
+    public uid: String;
     public scans: ScanModel[] = [];
+    public isPresent: boolean = false;
 
-    public GetState() {
-        let scans = this.scans.filter(d => moment(d.date).isAfter(moment().subtract(10, 'h')));
-        
-        if (scans.length % 2 == 0)
-            return false;
-        
-        return true;
+    public GetState(): boolean {
+        return this.isPresent;
+    }
+
+    public AddScan(terminalId: string)  {
+        this.scans.push(new ScanModel(new Date(), terminalId));
+
+        this.isPresent = !this.isPresent;
+    }
+
+    public GetLastScan(): ScanModel {
+        return this.scans[this.scans.length - 1];
     }
 }

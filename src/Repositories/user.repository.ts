@@ -23,12 +23,12 @@ export default class UserRepository {
         return this.users.filter(user => user.GetState());
     }
 
-    public Get(uuid: String): UserModel {
-        return this.users.find(user => user.uuid == uuid);
+    public Get(uid: String): UserModel {
+        return this.users.find(user => user.uid == uid);
     }
 
     public Add(user: UserModel) {
-        if (this.Get(user.uuid) != null)
+        if (this.Get(user.uid) != null)
             throw new Error("duplicate user");
 
         this.users.push(user);

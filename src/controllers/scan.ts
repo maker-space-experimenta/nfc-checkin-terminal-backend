@@ -18,27 +18,25 @@ export default class ScanController {
     }
 
     public ScanEndpoint (req, res) {
-        let uuid = req.params.guid.toUpperCase();
-        let user = UserRepository.getInstance().Get(uuid);
-        let result = "removed";
+        let uid = req.body.uid.toUpperCase();
+        let terminalId = req.body.terminalId;
+        let user = UserRepository.getInstance().Get(uid);
 
         if (!user) {
-            console.debug('user added - uuid ' + uuid);
-            user = new UserModel(uuid);
+            console.debug('user added - UID ' + uid);
+            user = new UserModel(uid);
             UserRepository.getInstance().Add(user);
-
-            result = "added";
         }
 
-        user.AddScan();
+        user.AddScan(terminalId);
 
-        res.send({ result: result });
+        res.send({ result: user.GetState() ? "added" : "removed" });
     }
 
     public Register () :express.Router {
         let router = express.Router();
-
-        router.get('/:guid', this.ScanEndpoint);
+        router.use(express.json());
+        router.post('/', this.ScanEndpoint);
 
         return router;
     }
